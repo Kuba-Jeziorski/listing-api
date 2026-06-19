@@ -1,0 +1,23 @@
+{
+  "name": "listing-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sass --watch src/scss/style.scss dist/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kuba-Jeziorski/listing-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kuba-Jeziorski/listing-api/issues"
+  },
+  "homepage": "https://github.com/Kuba-Jeziorski/listing-api#readme",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.101.0"
+  }
+}
