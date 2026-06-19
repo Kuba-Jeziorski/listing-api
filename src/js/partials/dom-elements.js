@@ -11,3 +11,10 @@ export const getErrorTryDiv = () => document.querySelector("[data-error=try]");
 
 export const getErrorCatchDiv = () =>
   document.querySelector("[data-error=catch]");
+
+export const getModal = () => document.querySelector("#modal");
+
+export const getModalWrapper = () => document.querySelector("#modal .wrapper");
+
+export const getModalCloseButton = () =>
+  document.querySelector("#modal .close");

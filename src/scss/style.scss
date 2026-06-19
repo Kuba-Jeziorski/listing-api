@@ -19,8 +19,8 @@
   --color-light: #fff;
   --color-dark: #000;
   --color-gray: #ccc;
+  --color-red: #e00000;
   --color-brand-pink: #fccdc7;
-  --color-brand-orange: #fbc97c;
 
   --li-spacing: var(--space-24) var(--space-24) var(--space-24) var(--space-48);
 }
@@ -231,6 +231,10 @@ select {
     gap: var(--space-24);
     justify-content: center;
 
+    &.hidden {
+      display: none;
+    }
+
     button {
       width: 48px;
       aspect-ratio: 1;
@@ -251,6 +255,163 @@ select {
         color: var(--color-light);
       }
     }
+  }
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgb(0, 0, 0, 0.5);
+  display: none;
+  align-items: flex-start;
+
+  &.active {
+    display: flex;
+  }
+
+  .wrapper {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 800px;
+    max-width: calc(100vw - var(--space-48) * 2);
+    z-index: 20;
+    background: var(--color-light);
+    border-radius: var(--radius-12);
+
+    .extended-card {
+      border-radius: var(--radius-12);
+      padding: 24px;
+      padding-left: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      gap: var(--space-12);
+
+      .left-row {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-12);
+        flex: 1;
+
+        & > span {
+          position: absolute;
+          left: 16px;
+          width: var(--width-24);
+          aspect-ratio: 1;
+          border-radius: var(--radius-half);
+          border: 1px solid var(--color-brand-pink);
+        }
+
+        span {
+          font-size: var(--fs-14);
+          color: var(--color-brand-pink);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-12);
+          flex: 1;
+
+          h2 {
+            font-size: var(--fs-24);
+          }
+
+          h3 {
+            font-size: var(--fs-20);
+            color: var(--color-gray);
+            padding-bottom: var(--space-12);
+          }
+
+          .stock {
+            font-size: var(--fs-16);
+            color: var(--color-dark);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            span {
+              font-weight: 700;
+              font-size: var(--fs-16);
+
+              &.available {
+                color: var(--color-brand-pink);
+              }
+
+              &.unavailable {
+                color: var(--color-red);
+              }
+            }
+          }
+        }
+      }
+
+      .right-row {
+        font-size: var(--fs-24);
+        font-weight: 500;
+        color: var(--color-brand-pink);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-12);
+        width: 25%;
+
+        .price {
+          font-size: var(--fs-24);
+          font-weight: 500;
+          color: var(--color-brand-pink);
+        }
+      }
+
+      .tags {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-12);
+        list-style-type: none;
+        margin-top: var(--space-12);
+
+        li {
+          font-size: var(--fs-14);
+          padding: var(--space-12) var(--space-24);
+          border-radius: var(--radius-12);
+          border: 1px solid var(--color-brand-pink);
+          background-color: var(--color-brand-pink);
+          color: var(--color-dark);
+          font-weight: 600;
+        }
+      }
+
+      .description {
+        width: 100%;
+        font-size: var(--fs-16);
+        line-height: 1.5;
+        color: var(--color-dark);
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: -36px;
+    right: -36px;
+    width: 36px;
+    aspect-ratio: 1;
+    background-image: url("../src/icons/icon_close.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
   }
 }
 

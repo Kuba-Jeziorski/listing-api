@@ -5,7 +5,7 @@ import {
 } from "./dom-elements.js";
 import { filteredProducts } from "./filtered-products.js";
 import { getParams } from "./get-params.js";
-import { productCard } from "./product-card.js";
+import { productCardSimple } from "./product-card-simple.js";
 import { updateUrl } from "./update-url.js";
 
 const PER_PAGE = 6;
@@ -34,13 +34,17 @@ export const pagination = async () => {
   }
 
   // paginated listing
-  paginated.forEach((product) => productCard(product));
+  paginated.forEach((product) => productCardSimple(product));
 
   // pagination navigation
   paginationElement.innerHTML = "";
 
   const pagination = document.createElement("div");
   pagination.classList.add("pagination");
+
+  if (totalPages === 1) {
+    pagination.classList.add("hidden");
+  }
 
   Array.from({ length: totalPages }, (_, i) => i + 1).forEach((singlePage) => {
     const button = document.createElement("button");
@@ -57,6 +61,7 @@ export const pagination = async () => {
 
   paginationElement.appendChild(pagination);
 };
+
 export const pageChange = () => {
   const paginationElement = getPagination();
 

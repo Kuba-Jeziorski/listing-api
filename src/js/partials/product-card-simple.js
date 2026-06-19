@@ -1,6 +1,6 @@
 import { getProductsList } from "./dom-elements.js";
 
-export const productCard = (product) => {
+export const productCardSimple = (product) => {
   const productsList = getProductsList();
 
   if (!productsList) {
@@ -36,4 +36,6 @@ export const productCard = (product) => {
   li.appendChild(rightRow);
 
   productsList.appendChild(li);
+
+  li.setAttribute("data-index", id);
 };
