@@ -30,6 +30,11 @@ export const productCardExtended = (product) => {
   const productCategory = document.createElement("h3");
   productCategory.textContent = category;
 
+  const productPriceMobile = document.createElement("p");
+  productPriceMobile.classList.add("price");
+  productPriceMobile.classList.add("mobile");
+  productPriceMobile.textContent = `${price} PLN`;
+
   const productStock = document.createElement("p");
   productStock.classList.add("stock");
   productStock.textContent = "Stan: ";
@@ -58,6 +63,7 @@ export const productCardExtended = (product) => {
 
   leftRowInfo.appendChild(productName);
   leftRowInfo.appendChild(productCategory);
+  leftRowInfo.appendChild(productPriceMobile);
   leftRowInfo.appendChild(productStock);
 
   leftRow.appendChild(productId);

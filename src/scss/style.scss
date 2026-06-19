@@ -4,39 +4,59 @@
   --fs-20: 20px;
   --fs-24: 24px;
 
+  --space-4: 4px;
+  --space-8: 8px;
   --space-12: 12px;
+  --space-16: 16px;
   --space-24: 24px;
   --space-36: 36px;
   --space-48: 48px;
 
+  --width-12: 12px;
+  --width-24: 24px;
+  --width-36: 36px;
+  --width-48: 48px;
+  --width-filter-select: 220px;
+
+  --radius-4: 4px;
   --radius-12: 12px;
+  --radius-pill: var(--space-36);
   --radius-half: 50%;
 
   --max-width-900: 900px;
+  --max-width-modal: 800px;
 
-  --width-24: 24px;
+  --border-width: 1px;
+  --border-width-2: 2px;
 
   --color-light: #fff;
   --color-dark: #000;
   --color-gray: #ccc;
   --color-red: #e00000;
   --color-brand-pink: #fccdc7;
+  --color-overlay: rgb(0 0 0 / 0.5);
+
+  --shadow-hover: 0 9px 21px 0 rgb(0 0 0 / 0.1);
+  --transition-default: all 0.3s;
+
+  --z-modal: 10;
+  --z-modal-inner: 20;
 
   --li-spacing: var(--space-24) var(--space-24) var(--space-24) var(--space-48);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: var(--space-8);
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 4px;
+  border-radius: var(--radius-4);
   background-color: var(--color-gray);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-dark);
-  border-radius: 4px;
+  border-radius: var(--radius-4);
 }
 
 * {
@@ -122,18 +142,18 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
-    width: 220px;
+    height: var(--width-36);
+    width: var(--width-filter-select);
     background-color: var(--color-light);
     position: relative;
 
     &::before {
       content: "";
       position: absolute;
-      right: 12px;
+      right: var(--space-12);
       top: 50%;
       translate: 0 -50%;
-      width: 12px;
+      width: var(--width-12);
       aspect-ratio: 1;
       background-image: url("../src/icons/icon_chevron.svg");
       background-size: contain;
@@ -148,7 +168,7 @@ select {
       width: 100%;
       height: 100%;
       display: block;
-      border-radius: 36px;
+      border-radius: var(--radius-pill);
       padding-right: var(--space-36);
       padding-left: var(--space-12);
       background-color: transparent;
@@ -162,7 +182,7 @@ select {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--space-24);
   margin-top: 0;
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
@@ -173,10 +193,10 @@ select {
     display: flex;
     gap: var(--space-12);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: var(--transition-default);
 
     &:hover {
-      box-shadow: 0 9px 21px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-hover);
     }
   }
 
@@ -202,7 +222,7 @@ select {
       font-size: var(--fs-14);
       aspect-ratio: 1;
       border-radius: var(--radius-half);
-      border: 1px solid var(--color-brand-pink);
+      border: var(--border-width) solid var(--color-brand-pink);
       color: var(--color-brand-pink);
       display: flex;
       align-items: center;
@@ -226,6 +246,7 @@ select {
 #pagination {
   .pagination {
     margin-top: var(--space-48);
+    padding-bottom: var(--space-24);
     display: flex;
     align-items: center;
     gap: var(--space-24);
@@ -236,18 +257,18 @@ select {
     }
 
     button {
-      width: 48px;
+      width: var(--width-48);
       aspect-ratio: 1;
       border-radius: var(--radius-half);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid var(--color-dark);
+      border: var(--border-width-2) solid var(--color-dark);
       font-size: var(--fs-20);
       color: var(--color-dark);
       background-color: var(--color-light);
       cursor: pointer;
-      transition: all 0.3s;
+      transition: var(--transition-default);
 
       &.active,
       &:hover {
@@ -264,8 +285,8 @@ select {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
-  background-color: rgb(0, 0, 0, 0.5);
+  z-index: var(--z-modal);
+  background-color: var(--color-overlay);
   display: none;
   align-items: flex-start;
 
@@ -278,16 +299,15 @@ select {
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    width: 800px;
+    width: var(--max-width-modal);
     max-width: calc(100vw - var(--space-48) * 2);
-    z-index: 20;
+    z-index: var(--z-modal-inner);
     background: var(--color-light);
     border-radius: var(--radius-12);
 
     .extended-card {
       border-radius: var(--radius-12);
-      padding: 24px;
-      padding-left: 48px;
+      padding: var(--li-spacing);
       display: flex;
       flex-wrap: wrap;
       position: relative;
@@ -301,11 +321,11 @@ select {
 
         & > span {
           position: absolute;
-          left: 16px;
+          left: var(--space-16);
           width: var(--width-24);
           aspect-ratio: 1;
           border-radius: var(--radius-half);
-          border: 1px solid var(--color-brand-pink);
+          border: var(--border-width) solid var(--color-brand-pink);
         }
 
         span {
@@ -332,12 +352,16 @@ select {
             padding-bottom: var(--space-12);
           }
 
+          .price.mobile {
+            display: none;
+          }
+
           .stock {
             font-size: var(--fs-16);
             color: var(--color-dark);
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: var(--space-4);
 
             span {
               font-weight: 700;
@@ -385,7 +409,7 @@ select {
           font-size: var(--fs-14);
           padding: var(--space-12) var(--space-24);
           border-radius: var(--radius-12);
-          border: 1px solid var(--color-brand-pink);
+          border: var(--border-width) solid var(--color-brand-pink);
           background-color: var(--color-brand-pink);
           color: var(--color-dark);
           font-weight: 600;
@@ -403,9 +427,9 @@ select {
 
   .close {
     position: absolute;
-    top: -36px;
-    right: -36px;
-    width: 36px;
+    top: calc(var(--width-36) * -1.25);
+    right: 0;
+    width: var(--width-36);
     aspect-ratio: 1;
     background-image: url("../src/icons/icon_close.svg");
     background-position: center;
@@ -428,5 +452,98 @@ select {
 
   &.active {
     display: flex;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --max-width-900: 100%;
+  }
+
+  main {
+    padding-left: var(--space-12);
+    padding-right: var(--space-12);
+  }
+
+  #pagination {
+    .pagination {
+      margin-top: var(--space-24);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  h2 {
+    font-size: var(--fs-20);
+  }
+
+  #products-list {
+    .right-row {
+      font-size: var(--fs-20);
+    }
+  }
+
+  #modal {
+    .wrapper {
+      .extended-card {
+        .left-row {
+          .info {
+            .price.mobile {
+              display: flex;
+              font-size: var(--fs-24);
+              font-weight: 500;
+              color: var(--color-brand-pink);
+            }
+          }
+        }
+        .right-row {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --li-spacing: var(--space-16) var(--space-16) var(--space-16)
+      var(--space-48);
+  }
+
+  #products-list {
+    li {
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+
+    .right-row {
+      width: 100%;
+      align-items: start;
+    }
+  }
+
+  #filtering {
+    .select-wrapper {
+      width: fit-content;
+    }
+  }
+
+  #modal .wrapper {
+    width: 100%;
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  #filtering {
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: start;
+    margin-bottom: 0;
+  }
+
+  .products-list-wrapper {
+    padding-left: var(--space-12);
+    padding-right: var(--space-12);
   }
 }
