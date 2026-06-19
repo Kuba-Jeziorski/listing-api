@@ -3,5 +3,6 @@ export const getParams = () => {
 
   return {
     category: params.get("category") || "wszystkie",
+    page: parseInt(params.get("page")) || 1,
   };
 };

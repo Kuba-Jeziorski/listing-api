@@ -10,7 +10,7 @@ export const productsFilterDynamicOptions = async () => {
 
   const { category } = getParams();
 
-  const products = await getProducts();
+  const products = (await getProducts()) ?? [];
 
   const allUniqueCategories = [
     ...new Set(products.map((product) => product.category)),
@@ -27,11 +27,11 @@ export const productsFilterDynamicOptions = async () => {
 
   categoriesSelect.appendChild(defaultOption);
 
-  allUniqueCategories.forEach((category) => {
+  allUniqueCategories.forEach((cat) => {
     const option = document.createElement("option");
 
-    option.value = category;
-    option.textContent = category;
+    option.value = cat;
+    option.textContent = cat;
 
     categoriesSelect.appendChild(option);
   });

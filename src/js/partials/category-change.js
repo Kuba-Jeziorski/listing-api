@@ -1,4 +1,4 @@
-import { displayProducts } from "./display-products.js";
+import { pagination } from "./pagination.js";
 import { updateUrl } from "./update-url.js";
 
 export const categoryChange = () => {
@@ -11,7 +11,7 @@ export const categoryChange = () => {
   categoriesSelect.addEventListener("change", async (e) => {
     const category = e.target.value;
 
-    updateUrl(category);
-    await displayProducts();
+    updateUrl(category, 1);
+    await pagination();
   });
 };
