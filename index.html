@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="src/icons/favicon.ico" />
     <link rel="stylesheet" href="dist/style.css" />
     <script type="module" src="src/js/scripts.js"></script>
     <title>Listing API</title>
@@ -10,12 +11,19 @@
   <body>
     <main>
       <section>
-        <!-- TODO: Filter -->
+        <div id="filtering">
+          <p>Filtruj listę produktów</p>
+          <div class="select-wrapper">
+            <select name="filter" id="filter"></select>
+          </div>
+        </div>
+
         <div class="products-list-wrapper">
           <ul id="products-list"></ul>
         </div>
         <!-- TODO: Pagination -->
       </section>
     </main>
+    <!-- TODO: Modal window -->
   </body>
 </html>
