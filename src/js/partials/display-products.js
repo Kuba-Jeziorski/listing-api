@@ -14,6 +14,11 @@ export const displayProducts = async () => {
     const { id, name, category, price } = product;
 
     const li = document.createElement("li");
+    const leftRow = document.createElement("div");
+    const rightRow = document.createElement("div");
+
+    leftRow.classList.add("left-row");
+    rightRow.classList.add("right-row");
 
     const productId = document.createElement("span");
     productId.textContent = id;
@@ -25,12 +30,15 @@ export const displayProducts = async () => {
     productCategory.textContent = category;
 
     const productPrice = document.createElement("p");
-    productPrice.textContent = price;
+    productPrice.textContent = `${price} PLN`;
 
-    li.appendChild(productId);
-    li.appendChild(productName);
-    li.appendChild(productCategory);
-    li.appendChild(productPrice);
+    leftRow.appendChild(productId);
+    leftRow.appendChild(productName);
+    leftRow.appendChild(productCategory);
+    rightRow.appendChild(productPrice);
+
+    li.appendChild(leftRow);
+    li.appendChild(rightRow);
 
     productsList.appendChild(li);
   });
