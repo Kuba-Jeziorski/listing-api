@@ -1,11 +1,14 @@
 import { getProducts } from "./get-products.js";
+import { getParams } from "./get-params.js";
 
-export const productsFilter = async () => {
+export const productsFilterDynamicOptions = async () => {
   const categoriesSelect = document.querySelector("#filter");
 
   if (!categoriesSelect) {
     return;
   }
+
+  const { category } = getParams();
 
   const products = await getProducts();
 
@@ -19,7 +22,7 @@ export const productsFilter = async () => {
   const defaultFilter = "Pokaż wszystkie";
   const defaultOption = document.createElement("option");
 
-  defaultOption.value = defaultFilter;
+  defaultOption.value = "Wszystkie";
   defaultOption.textContent = defaultFilter;
 
   categoriesSelect.appendChild(defaultOption);
@@ -41,4 +44,11 @@ export const productsFilter = async () => {
   extraOption.textContent = extraFilterOption;
 
   categoriesSelect.appendChild(extraOption);
+
+  // sync with url
+  if (category.toLowerCase() === "wszystkie") {
+    categoriesSelect.value = "Wszystkie";
+  } else {
+    categoriesSelect.value = category;
+  }
 };

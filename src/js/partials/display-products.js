@@ -1,4 +1,4 @@
-import { getProducts } from "./get-products.js";
+import { filteredProducts } from "./filtered-products.js";
 
 export const displayProducts = async () => {
   const productsList = document.querySelector("#products-list");
@@ -6,9 +6,13 @@ export const displayProducts = async () => {
     return;
   }
 
-  const products = await getProducts();
+  const products = await filteredProducts();
 
   productsList.innerHTML = "";
+
+  if (products.length === 0) {
+    // TODO: No products
+  }
 
   products.forEach((product) => {
     const { id, name, category, price } = product;
