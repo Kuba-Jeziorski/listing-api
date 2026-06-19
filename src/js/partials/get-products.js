@@ -1,17 +1,19 @@
+import { getErrorCatchDiv, getErrorTryDiv } from "./dom-elements.js";
+
 const API_LINK = "https://s5.cosibella.pl/api/test/products";
 
 let fetchedProducts = null;
 
 export const getProducts = async () => {
   if (!fetchedProducts) {
-    fetchedProducts = fetchProducts();
+    fetchedProducts = await fetchProducts();
   }
   return fetchedProducts;
 };
 
 const fetchProducts = async () => {
-  const noProductsDivTry = document.querySelector("[data-error=try]");
-  const noProductsDivCatch = document.querySelector("[data-error=catch]");
+  const noProductsDivTry = getErrorTryDiv();
+  const noProductsDivCatch = getErrorCatchDiv();
 
   try {
     const response = await fetch(API_LINK);

@@ -1,14 +1,29 @@
+import { getFilter } from "./dom-elements.js";
 import { getProducts } from "./get-products.js";
 import { getParams } from "./get-params.js";
 
-export const productsFilterDynamicOptions = async () => {
-  const categoriesSelect = document.querySelector("#filter");
+export const syncFilterFromUrl = () => {
+  const categoriesSelect = getFilter();
 
   if (!categoriesSelect) {
     return;
   }
 
   const { category } = getParams();
+
+  if (category.toLowerCase() === "wszystkie") {
+    categoriesSelect.value = "Wszystkie";
+  } else {
+    categoriesSelect.value = category;
+  }
+};
+
+export const productsFilterDynamicOptions = async () => {
+  const categoriesSelect = getFilter();
+
+  if (!categoriesSelect) {
+    return;
+  }
 
   const products = (await getProducts()) ?? [];
 
@@ -45,10 +60,5 @@ export const productsFilterDynamicOptions = async () => {
 
   categoriesSelect.appendChild(extraOption);
 
-  // sync with url
-  if (category.toLowerCase() === "wszystkie") {
-    categoriesSelect.value = "Wszystkie";
-  } else {
-    categoriesSelect.value = category;
-  }
+  syncFilterFromUrl();
 };

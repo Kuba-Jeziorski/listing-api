@@ -1,18 +1,19 @@
+import { getNoProductsDiv, getPagination, getProductsList } from "./dom-elements.js";
 import { filteredProducts } from "./filtered-products.js";
 import { getParams } from "./get-params.js";
 import { productCard } from "./product-card.js";
 import { updateUrl } from "./update-url.js";
 
 const PER_PAGE = 6;
-const paginationElement = document.querySelector("#pagination");
-const productsList = document.querySelector("#products-list");
-const noProductsDiv = document.querySelector("[data-error=no-products]");
 
 export const pagination = async () => {
+  const paginationElement = getPagination();
+  const productsList = getProductsList();
+  const noProductsDiv = getNoProductsDiv();
   const { page, category } = getParams();
   const products = await filteredProducts();
 
-  if (!paginationElement) {
+  if (!paginationElement || !productsList) {
     return;
   }
 
@@ -47,16 +48,20 @@ export const pagination = async () => {
 };
 
 export const pageChange = () => {
-  paginationElement.addEventListener("click", async (e) => {
-    if (e.target.tagName !== "BUTTON") {
-      return;
-    }
+  const paginationElement = getPagination();
 
-    const { category } = getParams();
+  if (paginationElement) {
+    paginationElement.addEventListener("click", async (e) => {
+      if (e.target.tagName !== "BUTTON") {
+        return;
+      }
 
-    const page = Number(e.target.dataset.page);
+      const { category } = getParams();
 
-    updateUrl(category, page);
-    await pagination();
-  });
+      const page = Number(e.target.dataset.page);
+
+      updateUrl(category, page);
+      await pagination();
+    });
+  }
 };

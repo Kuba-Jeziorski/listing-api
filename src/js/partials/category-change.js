@@ -1,8 +1,9 @@
+import { getFilter } from "./dom-elements.js";
 import { pagination } from "./pagination.js";
 import { updateUrl } from "./update-url.js";
 
 export const categoryChange = () => {
-  const categoriesSelect = document.querySelector("#filter");
+  const categoriesSelect = getFilter();
 
   if (!categoriesSelect) {
     return;

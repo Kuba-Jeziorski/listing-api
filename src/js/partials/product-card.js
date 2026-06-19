@@ -1,6 +1,11 @@
-const productsList = document.querySelector("#products-list");
+import { getProductsList } from "./dom-elements.js";
 
 export const productCard = (product) => {
+  const productsList = getProductsList();
+
+  if (!productsList) {
+    return;
+  }
   const { id, name, category, price } = product;
 
   const li = document.createElement("li");

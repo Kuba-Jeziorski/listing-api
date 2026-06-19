@@ -1,8 +1,9 @@
+import { getProductsList } from "./dom-elements.js";
 import { getParams } from "./get-params.js";
 import { getProducts } from "./get-products.js";
 
 export const filteredProducts = async () => {
-  const productsList = document.querySelector("#products-list");
+  const productsList = getProductsList();
   if (!productsList) {
     return [];
   }
@@ -16,7 +17,7 @@ export const filteredProducts = async () => {
       return true;
     }
 
-    return product.category == category;
+    return product.category === category;
   });
 
   return filteredProducts;
