@@ -2,6 +2,8 @@ import { filteredProducts } from "./filtered-products.js";
 
 export const displayProducts = async () => {
   const productsList = document.querySelector("#products-list");
+  const noProductsDiv = document.querySelector("[data-error=no-products]");
+
   if (!productsList) {
     return;
   }
@@ -10,8 +12,10 @@ export const displayProducts = async () => {
 
   productsList.innerHTML = "";
 
-  if (products.length === 0) {
-    // TODO: No products
+  if (products.length === 0 && noProductsDiv) {
+    noProductsDiv.classList.add("active");
+  } else {
+    noProductsDiv.classList.remove("active");
   }
 
   products.forEach((product) => {

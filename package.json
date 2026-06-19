@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "sass --watch src/scss/style.scss dist/style.css"
+    "dev": "concurrently \"sass --watch src/scss/style.scss dist/style.css\" \"live-server --open=index.html --port=3000\""
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   "homepage": "https://github.com/Kuba-Jeziorski/listing-api#readme",
   "description": "",
   "devDependencies": {
+    "concurrently": "^10.0.3",
+    "live-server": "^1.2.2",
     "sass": "^1.101.0"
   }
 }
