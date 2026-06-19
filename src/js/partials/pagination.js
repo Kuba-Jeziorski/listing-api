@@ -1,4 +1,8 @@
-import { getNoProductsDiv, getPagination, getProductsList } from "./dom-elements.js";
+import {
+  getNoProductsDiv,
+  getPagination,
+  getProductsList,
+} from "./dom-elements.js";
 import { filteredProducts } from "./filtered-products.js";
 import { getParams } from "./get-params.js";
 import { productCard } from "./product-card.js";
@@ -29,24 +33,30 @@ export const pagination = async () => {
     noProductsDiv.classList.remove("active");
   }
 
+  // paginated listing
   paginated.forEach((product) => productCard(product));
 
-  // PAGINATION
-  paginationElement.innerHTML = `
-    <div class="pagination">
-      ${Array.from({ length: totalPages }, (_, i) => i + 1)
-        .map(
-          (p) => `
-            <button class="${p === page ? "active" : ""}" data-page="${p}">
-              ${p}
-            </button>
-          `,
-        )
-        .join("")}
-    </div>
-  `;
-};
+  // pagination navigation
+  paginationElement.innerHTML = "";
 
+  const pagination = document.createElement("div");
+  pagination.classList.add("pagination");
+
+  Array.from({ length: totalPages }, (_, i) => i + 1).forEach((singlePage) => {
+    const button = document.createElement("button");
+
+    button.textContent = singlePage;
+    button.dataset.page = singlePage;
+
+    if (singlePage === page) {
+      button.classList.add("active");
+    }
+
+    pagination.appendChild(button);
+  });
+
+  paginationElement.appendChild(pagination);
+};
 export const pageChange = () => {
   const paginationElement = getPagination();
 
