@@ -1,3 +1,6 @@
+import { displayProducts } from "./partials/display-products.js";
+import { getProducts } from "./partials/get-products.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("scripts.js");
+  displayProducts();
 });
