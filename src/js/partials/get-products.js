@@ -1,6 +1,12 @@
-import { getErrorCatchDiv, getErrorTryDiv } from "./dom-elements.js";
+import {
+  getErrorCatchDiv,
+  getErrorTryDiv,
+  getFiltering,
+  getLoader,
+} from "./dom-elements.js";
 
 const API_LINK = "https://s5.cosibella.pl/api/test/products";
+const ARTIFICIAL_TIMEOUT = 3000;
 
 let fetchedProducts = null;
 
@@ -14,9 +20,18 @@ export const getProducts = async () => {
 const fetchProducts = async () => {
   const noProductsDivTry = getErrorTryDiv();
   const noProductsDivCatch = getErrorCatchDiv();
+  const filteringElement = getFiltering();
+  const loaderElement = getLoader();
+
+  loaderElement.classList.add("active");
 
   try {
     const response = await fetch(API_LINK);
+
+    // timeout to display a loader
+    await new Promise((resolve) => {
+      setTimeout(resolve, ARTIFICIAL_TIMEOUT);
+    });
 
     if (!response.ok) {
       if (noProductsDivTry) {
@@ -34,6 +49,14 @@ const fetchProducts = async () => {
       noProductsDivCatch.classList.remove("active");
     }
 
+    if (loaderElement) {
+      loaderElement.classList.add("active");
+    }
+
+    if (filteringElement) {
+      filteringElement.classList.add("active");
+    }
+
     return data;
   } catch (error) {
     console.error(error);
@@ -41,5 +64,7 @@ const fetchProducts = async () => {
       noProductsDivCatch.classList.add("active");
     }
     return [];
+  } finally {
+    loaderElement.classList.remove("active");
   }
 };
